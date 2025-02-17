@@ -1,4 +1,5 @@
 ## 例子1
+![image](https://github.com/user-attachments/assets/6061d2d7-941a-4982-8e26-2058828cefd3)
 
 ### 文字识别和信息提取
 
@@ -74,6 +75,8 @@ Final Answer: The image was taken at Shanghai Stadium, located at 800 Lingling R
 > {'input': 'https://pic.superbed.cc/item/67580169fa9f77b4dc007d03.jpg\n\n大致的地理位置：在一个体育场内，可能位于中国上海。\n\n总结其环境描 述：现代化体育场设计，悬挂了中国国旗，人们穿着运动服，似乎正在进行足球比赛或活动。\n\n可用于地图查询的地理标识名称：无\n\n可供查询的线索： 文字标志包括“申花不凡”，“CURVA RANGERS”，“最初的信仰是为了永远的追随”，“ONCE BLUE. ALWAYS BLUE!”，“YU H.C. 100”。\n\n可供查询的相关推测：可能与中国的上海绿地申花足球俱乐部相关，比赛和活动可能在中国上海的某个体育场进行。\n\n\n以上是图片的url以及从这张图片中提取的有助于确定图中内容所在地理位置的信息，请你根据以上的信息并结合工具进一步确定拍摄图片的具体地理位置,请尽量确定到街道位置级别，如果有多个可能的具体地理位置，则列出多个\n\n\n\n用于确定具体的位置，以下是你可以参考的步骤和方案：\n1.如果在环境描述中包含一些景点和地标的特征(比如建筑、风景等)，你可以 使用LandMarkRecognition来进行识别进而得到地理标识名称，然后将得到的地理标识名称作为参数输入到PlacesSearch中用于获取详细位置\n2.如果含有较为确定的地理标识名称，你可以直接使用PlacesSearch工具传递地理标识名称用于获取详细位置\n3.如果有其他可供查询的线索以及根据这些线索得到的相关推 测，建议多使用WebSearch访问互联网搜索这些线索和你的推测得到有关信息以帮助你找到头绪，进行查询的时候尽量只输入一个参数作为query,如果通过该方式得到了确切的地理标识名称，\n将得到的地理标识名称作为参数输入到PlacesSearch中用于获取详细位置\n4.如果上面两种方法行不通，你可以使用ImageReverseSearch来对图片在互联网上进行反向搜索该图片的相似图片以及对应在互联网上的相关内容，\n如果搜索结果为空或者不相关，建议从步骤3入手；如果 搜索到了较为确定的名称答案，则将该名称传递给PlacesSearch确定具体位置信息；如果搜索到了多个可能的名称答案，则一个个传递给PlacesSearch\n确定 具体位置信息，最后输出最终答案\n5.如果尝试了这些方法多次还是没有头绪，则输出：无法通过这张图片判断具体位置\n', 'output': 'The image was taken at Shanghai Stadium, located at 800 Lingling Road, Xuhui District, Shanghai, China.'}
 
 ## 例子2
+![image](https://github.com/user-attachments/assets/15e6b365-8d65-4206-841b-6cc337d25478)
+
 
 ### 文字识别和信息提取
 
