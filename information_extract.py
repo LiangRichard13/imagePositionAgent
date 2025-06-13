@@ -7,9 +7,21 @@ from config.prompt import information_extraction_prompt
 with open("config/config.yaml", "r",encoding="utf-8") as file:
     config = yaml.safe_load(file)
 
-words_access_token = config["baidu"]["words_access_token"]
+# words_access_token = config["baidu"]["words_access_token"]
 image_path=config["image"]["image_path"]
 
+
+API_KEY = "40vmdViIfPtjfbhztwoxZSuR"
+SECRET_KEY = "LVXR3JgAfsuej0RBZEq6o7EHDeU4XN1Q"
+
+def get_access_token():
+    """
+    使用 AK，SK 生成鉴权签名（Access Token）
+    :return: access_token，或是None(如果错误)
+    """
+    url = "https://aip.baidubce.com/oauth/2.0/token"
+    params = {"grant_type": "client_credentials", "client_id": API_KEY, "client_secret": SECRET_KEY}
+    return str(requests.post(url, params=params).json().get("access_token"))
 
 def call_gpt4o_vision(prompt):
     print("开始进行图片的识别")
@@ -41,7 +53,7 @@ def call_gpt4o_vision(prompt):
     except Exception as e:
         return f"API Problem: {e}"
     
-def words_recognition():
+def words_recognition(image_path):
     print("开始进行文字提取")
     request_url = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
     # 二进制方式打开图片文件
@@ -49,7 +61,7 @@ def words_recognition():
     img = base64.b64encode(f.read())
 
     params = {"image":img}
-    access_token = words_access_token
+    access_token = get_access_token()
     request_url = request_url + "?access_token=" + access_token
     headers = {'content-type': 'application/x-www-form-urlencoded'}
     response = requests.post(request_url, data=params, headers=headers)
@@ -63,3 +75,8 @@ def information_extract():
     extracted_information=call_gpt4o_vision(prompt=prompt)
     print("*****信息提取结果*****:\n",extracted_information)
     return extracted_information
+
+if __name__ == "__main__":
+    image_path="D:/CodeProjects/ImageLocationRecognition/images/江南.jpg"
+    information=words_recognition(image_path)
+    print(information)
